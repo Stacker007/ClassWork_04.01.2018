@@ -16,9 +16,9 @@
 using namespace std;
 void main() {
 	setlocale(LC_ALL, "rus");
-	int flyBegin, fly, minute, speed=1;
+	int flyBegin, fly,flyByK, minute, speed = 1;
 
-	const int ADMIT=5, DOUBLEWORK = 10;
+	const int ADMIT = 5, DOUBLEWORK = 10;
 	do {
 		cout << "Введите количество мух вначале ";
 		cin >> flyBegin;
@@ -28,12 +28,17 @@ void main() {
 		cin >> minute;
 	} while (minute < 1);
 	fly = flyBegin;
-	for (int i = 1; i <= minute; i++) {
-		fly-=speed; //Каждую минуту выгоняет муху
+	int i = 1;
+	for (; fly>0; i++) {
+		fly -= speed; //Каждую минуту выгоняет муху
 		if (i % 5 == 0) fly++;// Каждую пятую минуту залетает муха
-
+		if (fly < 0.1*flyBegin) speed = 2;
+		if (i == minute) flyByK = fly;
 	}
-		
+	cout << "Через " << minute << " минут  останется " << flyByK << " мух" << endl;
+	cout << "Мух не останется через " << i << " минут "<< endl;
+
+
 
 	system("pause");
 }
